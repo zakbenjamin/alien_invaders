@@ -1,12 +1,12 @@
 #blueborder{
         margin-top: -380px;
-margin-left: -250px;
+margin-left: -260px;
     position:fixed;
      width:500px;
      height:500px;
     border-width: 10px;
     border-style: double;
-    border-color: blue;
+    border-color: #0944d7;
     border-radius: 5px;
     z-index:15;
      top: 50%;
