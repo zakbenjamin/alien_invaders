@@ -43,7 +43,7 @@
   }
 
   function startGame() {
-    var screen = new GameScreen("Alien Invaders","press space to start",
+    var screen = new GameScreen("Pacman Invaders","Press space to start",
                                  function() {
                                      Game.loadBoard(new GameBoard(1));
                                  });
@@ -52,7 +52,7 @@
   }
 
   function endGame() {
-    var screen = new GameScreen("Game Over","(press space to restart)",
+    var screen = new GameScreen("Game Over","(Press space to restart)",
                                  function() {
                                      Game.loadBoard(new GameBoard(1));
                                  });
@@ -61,7 +61,7 @@
 
 
   function winGame() {
-    var screen = new GameScreen("You Win!","(press space to restart)",
+    var screen = new GameScreen("You Win!","(Press space to restart)",
                                  function() {
                                      Game.loadBoard(new GameBoard(1));
                                  });
