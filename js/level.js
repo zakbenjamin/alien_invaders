@@ -21,7 +21,18 @@
           [0,0,1,1,1,1,1,1,1,1,0],
           [0,0,1,1,1,1,1,1,1,1,0],
           [0,0,1,1,1,1,1,1,1,1,0],
-          [0,0,1,1,1,1,1,1,1,1,0]] };																/* 1 & 2 represents Alien 1 & 2, whilst 0 represents no alien. Depending on each level, you can change from bottom top what type, how many and what direction the alines come from.  */
+          [0,0,1,1,1,1,1,1,1,1,0]],
+     3:  [[0,0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0,0],
+          [0,2,2,2,2,2,2,2,2,2,0],
+          [0,2,2,2,2,2,2,2,2,2,0],
+          [0,2,2,2,2,2,2,2,2,2,0],
+          [0,2,1,1,1,1,1,1,1,2,0],
+          [0,2,1,1,1,1,1,1,1,2,0],
+          [1,1,1,1,1,1,1,1,1,1,1],
+          [1,1,1,1,1,1,1,1,1,1,1]]};																/* 1 & 2 represents Alien 1 & 2, whilst 0 represents no alien. Depending on each level, you can change from bottom top what type, how many and what direction the alines come from.  */
 
   var spriteData = {
     'alien1': { sx: 0,  sy: 0,  w: 20, h: 18, cls: Alien, frames: 2 }, 								
