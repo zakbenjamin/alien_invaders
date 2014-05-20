@@ -71,9 +71,11 @@ margin-left: -260px;
 #newone {
     margin-top: 86px;
     margin-left: -331px;
-    position:absolute;
+    position:fixed;
     top:50%;
     left:50%;
+    bottom: 0%;
+    z-index: -2000;
     
 }
     

@@ -43,7 +43,7 @@
   }
 
   function startGame() {
-    var screen = new GameScreen("Pacman Invaders","Press space to start",
+    var screen = new GameScreen("Pacman Invaders","Press space to start", 
                                  function() {
                                      Game.loadBoard(new GameBoard(1));
                                  });
