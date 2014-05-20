@@ -80,7 +80,7 @@ Alien.prototype.fireSometimes = function() { 											/* This represents how f
       if(Math.random()*100 < 10) {
         this.board.addSprite('missile',this.x + this.w/2 - Sprites.map.missile.w/2,
                                       this.y + this.h, 
-                                     { dy: 100 });
+                                     { dy: 120 });
       }
 }
 
@@ -114,7 +114,7 @@ Player.prototype.step = function(dt) {
     this.board.addSprite('missile',
                           this.x + this.w/2 - Sprites.map.missile.w/2,
                           this.y-this.h,
-                          { dy: -100, player: true });
+                          { dy: -150, player: true });
     this.board.missiles++;
     this.reloading = 10;
   }
