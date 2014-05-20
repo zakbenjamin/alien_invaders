@@ -23,9 +23,13 @@ background-attachment: fixed;
     
 }
 
- @font-face { font-family: 
- 
-} 
+
+
+
+#gameboard {
+    
+    position: fixed;
+}
 
 
 
@@ -59,6 +63,15 @@ margin-left: -260px;
     margin-top: -388px;
     margin-left: 260px;
     position: fixed;
+    top:50%;
+    left:50%;
+    
+}
+
+#newone {
+    margin-top: 86px;
+    margin-left: -331px;
+    position:absolute;
     top:50%;
     left:50%;
     
