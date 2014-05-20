@@ -101,7 +101,7 @@ Player.prototype.die = function() {
 Player.prototype.step = function(dt) {
   
     this.frame = 0;  /* Added */
-    if(Game.keys['left']) { this.x -= 110 * dt; }
+    if(Game.keys['left']) { this.x -= 110 * dt; } 
   if(Game.keys['right']) { this.x += 110 * dt; }
 
   if(this.x < 0) this.x = 0;
@@ -113,7 +113,7 @@ Player.prototype.step = function(dt) {
  
   if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles < 3) {  			/* This line of represents how many shots that can be fired at once */
       
-    this.frame = 1;  
+    this.frame = 2;  /*Added */
     
     GameAudio.play('fire'); 															/* The sound that accompanies the missle */
     this.board.addSprite('missile',
