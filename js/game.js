@@ -80,7 +80,7 @@ Alien.prototype.fireSometimes = function() { 											/* This represents how f
       if(Math.random()*100 < 10) {
         this.board.addSprite('missile',this.x + this.w/2 - Sprites.map.missile.w/2,
                                       this.y + this.h, 
-                                     { dy: 120 });
+                                     { dy: 115 });
       }
 }
 
@@ -89,7 +89,7 @@ var Player = function Player(opts) {
 }
 
 Player.prototype.draw = function(canvas) {
-   Sprites.draw(canvas,'player',this.x,this.y);
+   Sprites.draw(canvas,'player',this.x,this.y, this.frame);
 }
 
 
@@ -99,8 +99,10 @@ Player.prototype.die = function() {
 }
 
 Player.prototype.step = function(dt) {
-  if(Game.keys['left']) { this.x -= 100 * dt; }
-  if(Game.keys['right']) { this.x += 100 * dt; }
+  
+    this.frame = 0;
+    if(Game.keys['left']) { this.x -= 110 * dt; }
+  if(Game.keys['right']) { this.x += 110 * dt; }
 
   if(this.x < 0) this.x = 0;
   if(this.x > Game.width-this.w) this.x = Game.width-this.w;
@@ -110,6 +112,9 @@ Player.prototype.step = function(dt) {
 /* This overall section effects the functions and variables for the missile */
  
   if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles < 3) {  			/* This line of represents how many shots that can be fired at once */
+      
+    this.frame = 1;  
+    
     GameAudio.play('fire'); 															/* The sound that accompanies the missle */
     this.board.addSprite('missile',
                           this.x + this.w/2 - Sprites.map.missile.w/2,

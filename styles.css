@@ -29,6 +29,7 @@ background-attachment: fixed;
 #gameboard {
     
     position: fixed;
+    margin-top: 10px;
 }
 
 
