@@ -100,7 +100,7 @@ Player.prototype.die = function() {
 
 Player.prototype.step = function(dt) {
   
-    this.frame = 0;
+    this.frame = 0;  /* Added */
     if(Game.keys['left']) { this.x -= 110 * dt; }
   if(Game.keys['right']) { this.x += 110 * dt; }
 
