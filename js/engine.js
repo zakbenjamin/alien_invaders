@@ -67,6 +67,7 @@ var GameScreen = function GameScreen(text,text2,callback) {
 var GameBoard = function GameBoard(level_number) {
   this.removed_objs = [];
   this.missiles = 0;
+    this.BossAlien = 0; 
   this.level = level_number;
   var board = this;
 
@@ -97,6 +98,12 @@ var GameBoard = function GameBoard(level_number) {
   };
 
   this.step = function(dt) { 
+    
+      if(this.BossAlien<1 && Math.random()*1000<1) {
+        var BossAlien=this.addSprite('alien4' , Game.width, 10, { dx: -1, player: this.player });
+        ++this.BossAlien;  
+      }    
+      
     this.removed_objs = [];
     this.iterate(function() { 
         if(!this.step(dt)) this.die();

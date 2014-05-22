@@ -119,7 +119,7 @@ Player.prototype.step = function(dt) {
     this.board.addSprite('missile',
                           this.x + this.w/2 - Sprites.map.missile.w/2,
                           this.y-this.h,
-                          { dy: -150, player: true });
+                          { dy: -190, player: true });
     this.board.missiles++;
     this.reloading = 10;
   }
@@ -152,3 +152,27 @@ Missile.prototype.die = function() {
   if(this.board.missiles < 0) this.board.missiles=0;
    this.board.remove(this);
 }
+
+
+
+var BossAlien = function BossAlien (opts) 
+
+{ this.dx = opts.dx; 
+ this.frame = 0;
+ this.player= opts.player; }
+
+BossAlien.prototype.draw = function(canvas) 
+{ Sprites.draw(canvas, 'alien4', this.x, this.y, this.frame);}
+
+BossAlien.prototype.step = function(dt)
+{ this.x += this.dx;
+ this.frame = (this.frame+1) % 2; 
+ return true; } 
+
+BossAlien.prototype.die = function() {
+    //GameAudio.play('badass.wav');
+    this.board.remove(this);
+    this.player.frame=1;
+}
+
+

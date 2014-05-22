@@ -39,7 +39,8 @@
     'alien2': { sx: 0,  sy: 18, w: 20, h: 18, cls: Alien, frames: 2 },
     'alien3': { sx: 48,  sy: 0, w: 20, h:18, cls: Alien, frames: 2 },
     'player': { sx: 0,  sy: 36, w: 26, h: 17, cls: Player, frames: 3 },
-    'missile': { sx: 0,  sy: 86, w: 6,  h: 14, cls: Missile }
+    'missile': { sx: 0,  sy: 86, w: 6,  h: 14, cls: Missile },
+    'alien4': { sx: 0, sy: 60, w: 20, h: 18, cls: BossAlien, frames: 2 },
   }
 
   function startGame() {
