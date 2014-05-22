@@ -4,9 +4,9 @@ var Game = new function() {
 
   this.initialize = function(canvas_dom,level_data,sprite_data,callbacks) {
     this.canvas_elem = $(canvas_dom)[0];
-    this.canvas = this.canvas_elem.getContext('2d');
+    this.canvas = this.canvas_elem.getContext('2d');                                                
     this.width = $(this.canvas_elem).attr('width');
-    this.height= $(this.canvas_elem).attr('height');
+    this.height= $(this.canvas_elem).attr('height');                                            /* This section indicates the different attributes that belong to the game canvas */
 
     $(window).keydown(function(event) {
       if(KEY_CODES[event.keyCode]) Game.keys[KEY_CODES[event.keyCode]] = true;
@@ -24,7 +24,7 @@ var Game = new function() {
   this.loadBoard = function(board) { Game.board = board; };
 
   this.loop = function() { 
-    Game.board.step(30/1000); 
+    Game.board.step(40/1000);                                                                   /* Indicates the overall speed of the game */
     Game.board.render(Game.canvas);
     setTimeout(Game.loop,30);
   };
@@ -50,7 +50,7 @@ var Sprites = new function() {
 var GameScreen = function GameScreen(text,text2,callback) {
   this.step = function(dt) {
     if(Game.keys['fire'] && callback) callback();
-  };
+      };
 
   this.render = function(canvas) {
     canvas.clearRect(0,0,Game.width,Game.height);
