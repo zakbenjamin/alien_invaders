@@ -146,14 +146,14 @@ var GameBoard = function GameBoard(level_number) {
           this.addSprite('alien' + level[y][x], // Which Sprite
                          (alien.w+5)*x,  // This effects the distance between the alien sprites 
                          alien.h*y,       // Y
-                         { flock: flock }); // How the sprite moves
+                         { flock: flock }); // The fashion in which the sprite moves
         }
       }
     }
   };
 
   this.nextLevel = function() { 
-    return Game.level_data[level_number + 1] ? (level_number + 1) : false 
+    return Game.level_data[level_number + 1] ? (level_number + 1) : false                   // This is where the input for how many levels you want to go to after finishing one 
   };
  
   this.loadLevel(Game.level_data[level_number]);
