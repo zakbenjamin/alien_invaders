@@ -38,7 +38,7 @@ var Sprites = new function() {
     this.image = new Image();
     this.image.onload = callback;
     this.image.src = 'images/sprites.png';
-  };
+  };                                                                                            /* This sections represents all the sprite data */
 
   this.draw = function(canvas,sprite,x,y,frame) {
     var s = this.map[sprite];
@@ -56,7 +56,7 @@ var GameScreen = function GameScreen(text,text2,callback) {
     canvas.clearRect(0,0,Game.width,Game.height);
     canvas.font = "bold 40px arial";
     var measure = canvas.measureText(text);  
-    canvas.fillStyle = "#FFFFFF";
+    canvas.fillStyle = "#F5F337";
     canvas.fillText(text,Game.width/2 - measure.width/2,Game.height/2);
     canvas.font = "bold 20px arial";
     var measure2 = canvas.measureText(text2);
