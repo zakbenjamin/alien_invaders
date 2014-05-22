@@ -101,7 +101,7 @@ var GameBoard = function GameBoard(level_number) {
     
       if(this.BossAlien<1 && Math.random()*1000<1) {
         var BossAlien=this.addSprite('alien4' , Game.width, 10, { dx: -1, player: this.player });
-        ++this.BossAlien;  
+        ++this.BossAlien;                                                             // This is the code I implemented to add the new alien sprite to run along the top once per level very rarely 
       }    
       
     this.removed_objs = [];
@@ -136,7 +136,7 @@ var GameBoard = function GameBoard(level_number) {
     this.objects = [];
     this.player = this.addSprite('player', // Sprite
                                  Game.width/2, // X
-                                 Game.height - Sprites.map['player'].h - 10); // Y
+                                 Game.height - Sprites.map['player'].h - 10); // This effects how many pixels from the bottom the pac-man player is shooting
 
     var flock = this.add(new AlienFlock());
     for(var y=0,rows=level.length;y<rows;y++) {
@@ -144,9 +144,9 @@ var GameBoard = function GameBoard(level_number) {
         var alien = Sprites.map['alien' + level[y][x]];
         if(alien) { 
           this.addSprite('alien' + level[y][x], // Which Sprite
-                         (alien.w+10)*x,  // X
+                         (alien.w+5)*x,  // This effects the distance between the alien sprites 
                          alien.h*y,       // Y
-                         { flock: flock }); // Options
+                         { flock: flock }); // How the sprite moves
         }
       }
     }
