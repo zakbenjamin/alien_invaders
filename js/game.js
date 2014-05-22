@@ -3,7 +3,7 @@ var AlienFlock = function AlienFlock() {
   this.invulnrable = true;
   this.dx = 10; this.dy = 0;
   this.hit = 1; this.lastHit = 0;
-  this.speed = 10;
+  this.speed = 10;                                                      // This determines how fast the aliens step is
 
   this.draw = function() {};
 
@@ -20,7 +20,7 @@ var AlienFlock = function AlienFlock() {
       this.lastHit = this.hit;
       this.dy = this.speed;
     } else {
-      this.dy=0;
+      this.dy=0;                                                        // This determines if the aliens move down the y-axis while they step 
     }
     this.dx = this.speed * this.hit;
 
@@ -47,7 +47,7 @@ var AlienFlock = function AlienFlock() {
 var Alien = function Alien(opts) {
   this.flock = opts['flock'];
   this.frame = 0;
-  this.mx = 0;
+  this.mx = 0;                                                          // This determines the start position of the aliens on the x-axis
 }
 
 Alien.prototype.draw = function(canvas) {
@@ -56,16 +56,16 @@ Alien.prototype.draw = function(canvas) {
 
 Alien.prototype.die = function() {
   GameAudio.play('die');
-  this.flock.speed += 1;
-  this.board.remove(this);
+  this.flock.speed += 1;                                                // This determines how fast the alines move once one has been killed
+  this.board.remove(this);                                              // This functions defines that the alien is then removed upon collision 
 }
 
 Alien.prototype.step = function(dt) { 													/* Here you can edit how the alien moves */ 
   this.mx += dt * this.flock.dx;
   this.y += this.flock.dy;
-  if(Math.abs(this.mx) > 10) {
+  if(Math.abs(this.mx) > 10) {                                          // This determines how frequent the frame rate is. The lower the number, the quicker the frame rate 
     if(this.y == this.flock.max_y[this.x]) {
-      this.fireSometimes();
+      this.fireSometimes();                                             // This enables whether you want the aliens to fire or not  
     }
     this.x += this.mx;
     this.mx = 0;
@@ -80,7 +80,7 @@ Alien.prototype.fireSometimes = function() { 											/* This represents how f
       if(Math.random()*100 < 10) {
         this.board.addSprite('missile',this.x + this.w/2 - Sprites.map.missile.w/2,
                                       this.y + this.h, 
-                                     { dy: 115 });
+                                     { dy: 115 });                      // This determines how the fast the bullets move down the y-axis
       }
 }
 
@@ -94,7 +94,7 @@ Player.prototype.draw = function(canvas) {
 
 
 Player.prototype.die = function() {
-  GameAudio.play('die');
+  GameAudio.play('die');                                                // This section represents the sound the accompanies the dieing function 
   Game.callbacks['die']();
 }
 
@@ -102,7 +102,7 @@ Player.prototype.step = function(dt) {
   
     this.frame = 0;  /* Added */
     if(Game.keys['left']) { this.x -= 110 * dt; } 
-  if(Game.keys['right']) { this.x += 110 * dt; }
+  if(Game.keys['right']) { this.x += 110 * dt; }                        // This determines how fast the player moves when they press either the left and right key
 
   if(this.x < 0) this.x = 0;
   if(this.x > Game.width-this.w) this.x = Game.width-this.w;
@@ -119,7 +119,7 @@ Player.prototype.step = function(dt) {
     this.board.addSprite('missile',
                           this.x + this.w/2 - Sprites.map.missile.w/2,
                           this.y-this.h,
-                          { dy: -190, player: true });
+                          { dy: -190, player: true });                    // This determines how fast the players bullets fire 
     this.board.missiles++;
     this.reloading = 10;
   }
