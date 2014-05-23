@@ -170,9 +170,9 @@ BossAlien.prototype.step = function(dt)
  return true; } 
 
 BossAlien.prototype.die = function() {
-    //GameAudio.play('badass.wav');
+    GameAudio.play('bossfire');
     this.board.remove(this);
     this.player.frame=1;
-}
+}                                                                           // This section show the new alien that I added to run across the top
 
 
