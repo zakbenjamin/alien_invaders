@@ -54,11 +54,11 @@ var GameScreen = function GameScreen(text,text2,callback) {
 
   this.render = function(canvas) {
     canvas.clearRect(0,0,Game.width,Game.height);
-    canvas.font = "bold 40px arial";
+    canvas.font = "bold 35px retroville";
     var measure = canvas.measureText(text);  
     canvas.fillStyle = "#F5F337";
     canvas.fillText(text,Game.width/2 - measure.width/2,Game.height/2);
-    canvas.font = "bold 20px arial";
+    canvas.font = "bold 25px retroville";
     var measure2 = canvas.measureText(text2);
     canvas.fillText(text2,Game.width/2 - measure2.width/2,Game.height/2 + 40);
   };

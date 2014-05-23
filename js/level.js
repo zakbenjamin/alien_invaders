@@ -44,7 +44,7 @@
   }                                                                                                 /* This overall section relies on the sprite sheet, by taking the co-ordinates, heigh and width of each individal sprite it corresponds correctly - also has the amount of frames per sprite to represent movement */
 
   function startGame() {
-    var screen = new GameScreen("Pacman Invaders","Press space to start",                           /* This represents what is shown in the start screen*/
+    var screen = new GameScreen("PACMAN INVADERS","PRESS SPACE TO START",                           /* This represents what is shown in the start screen*/
                                 
                                  function() {
                                      Game.loadBoard(new GameBoard(1));
