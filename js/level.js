@@ -55,7 +55,7 @@
   }
 
   function endGame() {
-    var screen = new GameScreen("Game Over","(Press space to restart)",                             /* This represents what is shown when you get hit by an alien missile */
+    var screen = new GameScreen("GAME OVER","(PRESS SPACE TO RESTART)",                             /* This represents what is shown when you get hit by an alien missile */
                                 
                                  function() {
                                      Game.loadBoard(new GameBoard(1));
@@ -65,7 +65,7 @@
 
 
   function winGame() {
-    var screen = new GameScreen("You Win!","(Press space to restart)",                              /* This represents what is shown when you beat all 3 levels and win the game */
+    var screen = new GameScreen("YOU WIN!","(PRESS SPACE TO RESTART)",                              /* This represents what is shown when you beat all 3 levels and win the game */
                                 
                                  function() {
                                      Game.loadBoard(new GameBoard(1));
