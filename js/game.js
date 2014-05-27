@@ -61,7 +61,7 @@ Alien.prototype.die = function() {
   this.flock.speed += 1;                                                // This determines how fast the alines move once one has been killed
   this.board.remove(this); 
 // This functions defines that the alien is then removed upon collision 
-    score = score +1;
+    score = score +10;
     document.getElementById('score').innerHTML="Score : " + score;
                         
 }
