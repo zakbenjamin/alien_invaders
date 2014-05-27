@@ -60,14 +60,20 @@ var GameScreen = function GameScreen(text,text2,callback) {
     canvas.fillText(text,Game.width/2 - measure.width/2,Game.height/2);
     canvas.font = "bold 25px retroville";
     var measure2 = canvas.measureText(text2);
-    canvas.fillText(text2,Game.width/2 - measure2.width/2,Game.height/2 + 40);                                             // This section contains the font and different styling 
+    canvas.fillText(text2,Game.width/2 - measure2.width/2,Game.height/2 + 40);       
+      
+
+      
+      
+      
+      // This section contains the font and different styling 
   };
 };
 
 var GameBoard = function GameBoard(level_number) {
   this.removed_objs = [];
   this.missiles = 0;
-    this.BossAlien = 0; 
+  this.BossAlien = 0; 
   this.level = level_number;
   var board = this;
 
@@ -202,8 +208,9 @@ var GameAudio = new function() {
         audio_channels[a]['channel'].load();
         audio_channels[a]['channel'].play();
         break;
+          
+          
       }
     }
   };
 };
-

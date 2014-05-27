@@ -74,7 +74,7 @@
   }
 
   $(function() {
-    GameAudio.load({ 'fire' : 'media/waka.ogg', 'die' : 'media/laserdeath.ogg', 'start' : 'media/startsound.ogg', 'bossfire' : 'media/bosslaser.ogg'}, /* These are the sound files which are enabled and accompany each main action */
+    GameAudio.load({ 'fire' : 'media/waka.ogg', 'die' : 'media/laserdeath.ogg', 'start' : 'media/startsound.ogg', 'bossfire' : 'media/bosslaser.ogg'}, /* These are the sound filesscore which are enabled and accompany each main action */
                    
                    function() { 
                        Game.initialize("#gameboard", levelData, spriteData,

@@ -87,5 +87,15 @@ margin-left: -260px;
 }
     
     
-   
+#game-wrapper #score {
+    color: white;
+    font-family: 'retroville';
+    font-size: 20px;
+    font-weight: bold;
+    z-index: 1000;
+    position: fixed;
+    float: left;
+    margin-left: 10px;
+    margin-top: 20px;
+}
 

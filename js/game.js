@@ -1,3 +1,5 @@
+var score = 0;
+
 
 var AlienFlock = function AlienFlock() {
   this.invulnrable = true;
@@ -57,7 +59,11 @@ Alien.prototype.draw = function(canvas) {
 Alien.prototype.die = function() {
   GameAudio.play('die');
   this.flock.speed += 1;                                                // This determines how fast the alines move once one has been killed
-  this.board.remove(this);                                              // This functions defines that the alien is then removed upon collision 
+  this.board.remove(this); 
+// This functions defines that the alien is then removed upon collision 
+    score = score +1;
+    document.getElementById('score').innerHTML="Score : " + score;
+                        
 }
 
 Alien.prototype.step = function(dt) { 													/* Here you can edit how the alien moves */ 
