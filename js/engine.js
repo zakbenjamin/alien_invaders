@@ -1,14 +1,22 @@
 var Game = new function() {                                                                  
   var KEY_CODES = { 37:'left', 39:'right', 32 :'fire' };
-  this.keys = {};                                               // This defines the different buttons
+  this.keys = {};                                          
+       
+    // This is the game controls. It defines the different buttons that will be used on the keyboard to control the player
+    
+    
+    
 
   this.initialize = function(canvas_dom,level_data,sprite_data,callbacks) {
     this.canvas_elem = $(canvas_dom)[0];
     this.canvas = this.canvas_elem.getContext('2d');                                                
     this.width = $(this.canvas_elem).attr('width');
-    this.height= $(this.canvas_elem).attr('height');                                            /* This section creates the canvas and indicates the different attributes that belong to the game canvas */
+    this.height= $(this.canvas_elem).attr('height');                                        
+    // This section creates the canvas and indicates the different attributes that belong to it
+      
 
-    $(window).keydown(function(event) {
+    
+      $(window).keydown(function(event) {
       if(KEY_CODES[event.keyCode]) Game.keys[KEY_CODES[event.keyCode]] = true;
     });
 
@@ -21,54 +29,77 @@ var Game = new function() {
     Sprites.load(sprite_data,this.callbacks['start']);
   };
 
+  
+    
+  
+    
+    // This runs the game loop
+    
   this.loadBoard = function(board) { Game.board = board; };
 
   this.loop = function() { 
-    Game.board.step(40/1000);                                                                   /* Indicates the overall speed of the game */
+    Game.board.step(40/1000);              
+      
+      // Indicates the overall speed of the game 
+      
     Game.board.render(Game.canvas);
     setTimeout(Game.loop,30);
   };
 };
 
+
+
+    
+    // This initiates the sprites and its information 
+
 var Sprites = new function() {
-  this.map = { };                                               // This initiates the sprites 
+  this.map = { };                                               
 
   this.load = function(sprite_data,callback) { 
     this.map = sprite_data;
     this.image = new Image();
     this.image.onload = callback;
     this.image.src = 'images/sprites.png';
-  };                                                                                            /* This sections represents all the sprite data */
-
-  this.draw = function(canvas,sprite,x,y,frame) {
+  };                                                                                       // This section represents all the sprite data 
+    
+    this.draw = function(canvas,sprite,x,y,frame) {
     var s = this.map[sprite];
     if(!frame) frame = 0;
     canvas.drawImage(this.image, s.sx + frame * s.w, s.sy, s.w, s.h, x,y, s.w, s.h);
   };
 }
 
+
+
+
+    // Initiates the start screen 
+
 var GameScreen = function GameScreen(text,text2,callback) {
   this.step = function(dt) {
     if(Game.keys['fire'] && callback) callback();
-      };                                        // Initiates the start screen 
-
+      };               
+    
   this.render = function(canvas) {
+      
+    
+      
+      // This section contains the font and different styling for the start screen
+                                         
     canvas.clearRect(0,0,Game.width,Game.height);
     canvas.font = "bold 35px retroville";
     var measure = canvas.measureText(text);  
     canvas.fillStyle = "#F5F337";
-    canvas.fillText(text,Game.width/2 - measure.width/2,Game.height/2);
+    canvas.fillText(text,Game.width/2 -  
+    measure.width/2,Game.height/2);
     canvas.font = "bold 25px retroville";
     var measure2 = canvas.measureText(text2);
-    canvas.fillText(text2,Game.width/2 - measure2.width/2,Game.height/2 + 40);       
-      
-
-      
-      
-      
-      // This section contains the font and different styling 
+    canvas.fillText(text2,Game.width/2 - 
+    measure2.width/2,Game.height/2 + 40);       
+            
   };
 };
+
+
 
 var GameBoard = function GameBoard(level_number) {
   this.removed_objs = [];
@@ -107,7 +138,11 @@ var GameBoard = function GameBoard(level_number) {
     
       if(this.BossAlien<1 && Math.random()*1000<1) {
         var BossAlien=this.addSprite('alien4' , Game.width, 10, { dx: -1, player: this.player });
-        ++this.BossAlien;                                                             // This is the code I implemented to add the new alien sprite to run along the top once per level very rarely 
+        ++this.BossAlien;                                                             
+          
+          // This is the code I implemented to add the new alien sprite to step along the top very rarely 
+          
+          
       }    
       
     this.removed_objs = [];
@@ -126,6 +161,10 @@ var GameBoard = function GameBoard(level_number) {
     this.iterate(function() { this.draw(canvas); });
   };
 
+    
+    
+    // This represents collision detection
+    
   this.collision = function(o1,o2) {
     return !((o1.y+o1.h-1<o2.y) || (o1.y>o2.y+o2.h-1) ||
              (o1.x+o1.w-1<o2.x) || (o1.x>o2.x+o2.w-1));
@@ -138,12 +177,20 @@ var GameBoard = function GameBoard(level_number) {
     });
   };
 
+    
+    // This loads the level
+    
   this.loadLevel = function(level) {
     this.objects = [];
     this.player = this.addSprite('player', // Sprite
                                  Game.width/2, // X
                                  Game.height - Sprites.map['player'].h - 10); // This effects how many pixels from the bottom the pac-man player is shooting
 
+    
+      
+      
+    // This section effects how the alien moves
+      
     var flock = this.add(new AlienFlock());
     for(var y=0,rows=level.length;y<rows;y++) {
       for(var x=0,cols=level[y].length;x<cols;x++) {
@@ -159,7 +206,9 @@ var GameBoard = function GameBoard(level_number) {
   };
 
   this.nextLevel = function() { 
-    return Game.level_data[level_number + 1] ? (level_number + 1) : false                   // This is where the input for how many levels you want to go to after finishing one 
+    return Game.level_data[level_number + 1] ? (level_number + 1) : false                   
+    // This is where the input for how many levels you want to go to after finishing one 
+    
   };
  
   this.loadLevel(Game.level_data[level_number]);
@@ -178,6 +227,10 @@ var GameAudio = new function() {
     audio_channels[a]['finished'] = -1;	
   }
 
+    
+    
+    // This loads the sound
+    
   this.load = function(files,callback) {
     var audioCallback = function() { GameAudio.finished(callback); }                                            // This enables the games sounds
 
@@ -199,6 +252,9 @@ var GameAudio = new function() {
     }
   };
 
+    
+    // This then plays the sound
+    
   this.play = function(s) {
     for (a=0;a<audio_channels.length;a++) {
       thistime = new Date();

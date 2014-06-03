@@ -1,5 +1,7 @@
 var score = 0;
 
+var lives = 1;
+
 
 var AlienFlock = function AlienFlock() {
   this.invulnrable = true;
@@ -50,6 +52,7 @@ var Alien = function Alien(opts) {
   this.flock = opts['flock'];
   this.frame = 0;
   this.mx = 0;                                                          // This determines the start position of the aliens on the x-axis
+    
 }
 
 Alien.prototype.draw = function(canvas) {
@@ -58,15 +61,17 @@ Alien.prototype.draw = function(canvas) {
 
 Alien.prototype.die = function() {
   GameAudio.play('die');
-  this.flock.speed += 1;                                                // This determines how fast the alines move once one has been killed
+  this.flock.speed += 1;                                   // This determines how fast the alines move once one has been killed
   this.board.remove(this); 
-// This functions defines that the alien is then removed upon collision 
+        // This functions defines that the alien is then removed upon collision 
     score = score +10;
-    document.getElementById('score').innerHTML="Score : " + score;
+        // Adds 10 to the score
+    document.getElementById('score').innerHTML="SCORE : " + score;
                         
 }
 
-Alien.prototype.step = function(dt) { 													/* Here you can edit how the alien moves */ 
+Alien.prototype.step = function(dt) { 													// Here you can edit how the alien moves 
+    
   this.mx += dt * this.flock.dx;
   this.y += this.flock.dy;
   if(Math.abs(this.mx) > 10) {                                          // This determines how frequent the frame rate is. The lower the number, the quicker the frame rate 
@@ -78,11 +83,19 @@ Alien.prototype.step = function(dt) { 													/* Here you can edit how the 
     this.frame = (this.frame+1) % 2;
     if(this.x > Game.width - Sprites.map.alien1.w * 2) this.flock.hit = -1;
     if(this.x < Sprites.map.alien1.w) this.flock.hit = 1;
+
   }
+    
+    
+    if(this.y > 480){
+        GameAudio.play('die');
+        Game.callbacks['die']();
+    }
+    
   return true;
 }
 
-Alien.prototype.fireSometimes = function() { 											/* This represents how frequently the alien fires its missile(s) */
+Alien.prototype.fireSometimes = function() { 											// This represents how frequently the alien fires its missile(s) 
       if(Math.random()*100 < 10) {
         this.board.addSprite('missile',this.x + this.w/2 - Sprites.map.missile.w/2,
                                       this.y + this.h, 
@@ -100,8 +113,12 @@ Player.prototype.draw = function(canvas) {
 
 
 Player.prototype.die = function() {
-  GameAudio.play('die');                                                // This section represents the sound the accompanies the dieing function 
-  Game.callbacks['die']();
+  GameAudio.play('die');                                                // This section represents the sound the accompanies the die function 
+  
+    Game.callbacks['die']();
+    loseLife();
+    
+
 }
 
 Player.prototype.step = function(dt) {
@@ -115,13 +132,13 @@ Player.prototype.step = function(dt) {
 
   this.reloading--;
 
-/* This overall section effects the functions and variables for the missile */
+// This overall section effects the functions and variables for the missile 
  
-  if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles < 3) {  			/* This line of represents how many shots that can be fired at once */
+  if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles <3) {  			// This line of represents how many shots that can be fired at once 
       
-    this.frame = 2;  /*Added */
+    this.frame = 2;  // Added 
     
-    GameAudio.play('fire'); 															/* The sound that accompanies the missle */
+    GameAudio.play('fire'); 															// The sound that accompanies the missle 
     this.board.addSprite('missile',
                           this.x + this.w/2 - Sprites.map.missile.w/2,
                           this.y-this.h,
@@ -179,6 +196,7 @@ BossAlien.prototype.die = function() {
     GameAudio.play('bossfire');
     this.board.remove(this);
     this.player.frame=1;
-}                                                                           // This section show the new alien that I added to run across the top
-
-
+    
+    
+    
+}                          

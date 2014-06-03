@@ -30,13 +30,20 @@ background-attachment: fixed;
     
 }
 
-
+#game-wrapper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -370px;
+    margin-left: -250px;
+}
 
 #gameboard {
-    
-    position: fixed;
-    margin-top: 10px;
+    background-color: black;
 }
+
+
+
 
 
 
@@ -85,17 +92,33 @@ margin-left: -260px;
     z-index: -2000;
     
 }
-    
-    
+
 #game-wrapper #score {
-    color: white;
+   color: white;
     font-family: 'retroville';
-    font-size: 20px;
-    font-weight: bold;
-    z-index: 1000;
-    position: fixed;
-    float: left;
-    margin-left: 10px;
-    margin-top: 20px;
-}
+   font-size: 16px;
+     font-weight: bold;
+     z-index: 1000;
+     position: fixed;
+     float: left;
+     margin-left:-13px;
+     margin-top: 23px;
+ }
+    
+
+#game-wrapper #lives {
+   color: white;
+    font-family: 'retroville';
+   font-size: 16px;
+     font-weight: bold;
+     z-index: 1000;
+     position: fixed;
+     float: left;
+     margin-left:373px;
+     margin-top: 23px;
+ }
+    
+  
+  
+
 
