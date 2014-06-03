@@ -4,7 +4,7 @@ var Game = new function() {
        
     // This is the game controls. It defines the different buttons that will be used on the keyboard to control the player
     
-    
+    // ADDING NEW COMMITS - NEEDED TO MAKE ONE CHANGE TO THE JS IN ORDER TO DO SO
     
 
   this.initialize = function(canvas_dom,level_data,sprite_data,callbacks) {
