@@ -218,7 +218,9 @@ BossAlien.prototype.die = function() {
     this.board.remove(this);
     this.player.frame=1;
     this.board.player.badass = true;
-    
+    score = score +50;
+    document.getElementById('score').innerHTML="SCORE : " + score;
+                        
     
     
 }                          
