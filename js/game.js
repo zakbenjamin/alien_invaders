@@ -2,15 +2,17 @@ var score = 0;
 
 var lives = 1;
 
-
+// This determines how fast the aliens step is and other behaviour such as dying on one hit 
 var AlienFlock = function AlienFlock() {
   this.invulnrable = true;
   this.dx = 10; this.dy = 0;
   this.hit = 1; this.lastHit = 0;
-  this.speed = 10;                                                      // This determines how fast the aliens step is
+  this.speed = 10;                                                      
+    
 
   this.draw = function() {};
 
+        
   this.die = function() {
     if(Game.board.nextLevel()) {
       Game.loadBoard(new GameBoard(Game.board.nextLevel())); 
@@ -47,7 +49,7 @@ var AlienFlock = function AlienFlock() {
 }
 
 
-
+// Defines how the alien moves 
 var Alien = function Alien(opts) {
   this.flock = opts['flock'];
   this.frame = 0;
@@ -55,22 +57,27 @@ var Alien = function Alien(opts) {
     
 }
 
+// This draws and enables the alien sprite
 Alien.prototype.draw = function(canvas) {
   Sprites.draw(canvas,this.name,this.x,this.y,this.frame);
 }
 
+
+// This determines what happens as the alien dies
 Alien.prototype.die = function() {
-  GameAudio.play('die');
-  this.flock.speed += 1;                                   // This determines how fast the alines move once one has been killed
+  GameAudio.play('die'); // This is the sound that is played when alien dies
+  this.flock.speed += 1; // This determines how fast the alines move once one has been killed
   this.board.remove(this); 
         // This functions defines that the alien is then removed upon collision 
     score = score +10;
-        // Adds 10 to the score
+        // This adds 10 to the score
     document.getElementById('score').innerHTML="SCORE : " + score;
                         
 }
 
-Alien.prototype.step = function(dt) { 													// Here you can edit how the alien moves 
+
+// This defines the different attributes to how the the alien steps
+Alien.prototype.step = function(dt) { 													 
     
   this.mx += dt * this.flock.dx;
   this.y += this.flock.dy;
@@ -86,7 +93,7 @@ Alien.prototype.step = function(dt) { 													// Here you can edit how the 
 
   }
     
-    
+    // This determines that when the alien reaches 480px down the y-axis, the callback die is enabled
     if(this.y > 480){
         GameAudio.play('die');
         Game.callbacks['die']();
@@ -95,7 +102,7 @@ Alien.prototype.step = function(dt) { 													// Here you can edit how the 
   return true;
 }
 
-Alien.prototype.fireSometimes = function() { 											// This represents how frequently the alien fires its missile(s) 
+Alien.prototype.fireSometimes = function() { 							// This represents how frequently the alien fires its missile(s) 
       if(Math.random()*100 < 10) {
         this.board.addSprite('missile',this.x + this.w/2 - Sprites.map.missile.w/2,
                                       this.y + this.h, 
@@ -103,10 +110,15 @@ Alien.prototype.fireSometimes = function() { 											// This represents how f
       }
 }
 
+
+
+
+
 var Player = function Player(opts) { 
   this.reloading = 0;
 }
 
+// This is where the player sprite is loaded
 Player.prototype.draw = function(canvas) {
    Sprites.draw(canvas,'player',this.x,this.y, this.frame);
 }
@@ -132,6 +144,8 @@ Player.prototype.step = function(dt) {
 
   this.reloading--;
 
+    
+    
 // This overall section effects the functions and variables for the missile 
  
   if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles <3) {  			// This line of represents how many shots that can be fired at once 
@@ -145,11 +159,16 @@ Player.prototype.step = function(dt) {
                           { dy: -190, player: true });                    // This determines how fast the players bullets fire 
     this.board.missiles++;
     this.reloading = 10;
+      
+      
+      
+      
   }
   return true;
 }
 
 
+// This determines the different attributes of the players missile
 var Missile = function Missile(opts) {
    this.dy = opts.dy;
    this.player = opts.player;
@@ -162,6 +181,7 @@ Missile.prototype.draw = function(canvas) {
 Missile.prototype.step = function(dt) {
    this.y += this.dy * dt;
 
+    // Alien sprite is not returned when the missile collides with it 
    var enemy = this.board.collide(this);
    if(enemy) { 
      enemy.die();
@@ -178,6 +198,7 @@ Missile.prototype.die = function() {
 
 
 
+// BossAlien - The alien that runs across the top (attributes)
 var BossAlien = function BossAlien (opts) 
 
 { this.dx = opts.dx; 
@@ -196,6 +217,7 @@ BossAlien.prototype.die = function() {
     GameAudio.play('bossfire');
     this.board.remove(this);
     this.player.frame=1;
+    this.board.player.badass = true;
     
     
     

@@ -1,18 +1,20 @@
+    // This is the game controls. It defines the different buttons that will be used on the keyboard to control the player
+    
 var Game = new function() {                                                                  
   var KEY_CODES = { 37:'left', 39:'right', 32 :'fire' };
   this.keys = {};                                          
        
-    // This is the game controls. It defines the different buttons that will be used on the keyboard to control the player
+
     
-    // ADDING NEW COMMITS - NEEDED TO MAKE ONE CHANGE TO THE JS IN ORDER TO DO SO
     
+ // This section creates the canvas and indicates the different attributes that belong to it    
 
   this.initialize = function(canvas_dom,level_data,sprite_data,callbacks) {
     this.canvas_elem = $(canvas_dom)[0];
     this.canvas = this.canvas_elem.getContext('2d');                                                
     this.width = $(this.canvas_elem).attr('width');
     this.height= $(this.canvas_elem).attr('height');                                        
-    // This section creates the canvas and indicates the different attributes that belong to it
+   
       
 
     
