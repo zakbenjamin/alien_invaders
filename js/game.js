@@ -70,7 +70,7 @@ Alien.prototype.die = function() {
   this.board.remove(this); 
         // This functions defines that the alien is then removed upon collision 
     score = score +5;
-        // This adds 10 to the score
+        // This adds 5 to the score
     document.getElementById('score').innerHTML="SCORE : " + score;
                         
 }
@@ -137,8 +137,15 @@ Player.prototype.step = function(dt) {
   
     this.frame = 0;  /* Added */
     if(Game.keys['left']) { this.x -= 110 * dt; } 
-  if(Game.keys['right']) { this.x += 110 * dt; }                        // This determines how fast the player moves when they press either the left and right key
+  if(Game.keys['right']) { this.x += 110 * dt; } 
+    
+     // if(Game.keys['up']) { this.y -= 110 * dt; } 
+   //   if(Game.keys['down']) { this.y += 110 * dt; } 
 
+ // This determines how fast the player moves when they press either the left and right key
+
+    
+    
   if(this.x < 0) this.x = 0;
   if(this.x > Game.width-this.w) this.x = Game.width-this.w;
 
@@ -160,7 +167,10 @@ Player.prototype.step = function(dt) {
     this.board.missiles++;
     this.reloading = 10;
       
+    //  if(BossAlien.die)
       
+    
+          
       
       
   }
@@ -196,6 +206,9 @@ Missile.prototype.die = function() {
    this.board.remove(this);
 }
 
+
+
+    
 
 
 // BossAlien - The alien that runs across the top (attributes)

@@ -1,7 +1,7 @@
     // This is the game controls. It defines the different buttons that will be used on the keyboard to control the player
     
 var Game = new function() {                                                                  
-  var KEY_CODES = { 37:'left', 39:'right', 32 :'fire' };
+  var KEY_CODES = { 37:'left', 39:'right', 32 :'fire', 38:'up', 40:'down' };
   this.keys = {};                                          
        
 
