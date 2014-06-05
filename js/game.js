@@ -1,8 +1,11 @@
+// These are the variables of the score and lives
+
+
 var score = 0;
 
 var lives = 1;
 
-// This determines how fast the aliens step is and other behaviour such as dying on one hit 
+// This determines how fast the aliens flock is and other behaviour such as dying on one hit 
 var AlienFlock = function AlienFlock() {
   this.invulnrable = true;
   this.dx = 10; this.dy = 0;
@@ -12,7 +15,7 @@ var AlienFlock = function AlienFlock() {
 
   this.draw = function() {};
 
-        
+// This function loads the next level        
   this.die = function() {
     if(Game.board.nextLevel()) {
       Game.loadBoard(new GameBoard(Game.board.nextLevel())); 
@@ -85,6 +88,8 @@ Alien.prototype.step = function(dt) {
     if(this.y == this.flock.max_y[this.x]) {
       this.fireSometimes();                                             // This enables whether you want the aliens to fire or not  
     }
+      
+    // This defines the number of frames for the alien sprite  
     this.x += this.mx;
     this.mx = 0;
     this.frame = (this.frame+1) % 2;
@@ -113,7 +118,7 @@ Alien.prototype.fireSometimes = function() { 							// This represents how frequ
 
 
 
-
+// This is the players attributes 
 var Player = function Player(opts) { 
   this.reloading = 0;
 }
@@ -133,6 +138,7 @@ Player.prototype.die = function() {
 
 }
 
+// Player step movement
 Player.prototype.step = function(dt) {
   
     this.frame = 0;  /* Added */
@@ -214,24 +220,25 @@ Missile.prototype.die = function() {
 // BossAlien - The alien that runs across the top (attributes)
 var BossAlien = function BossAlien (opts) 
 
-{ this.dx = opts.dx; 
+{ this.dx = opts.dx;        // This defines that it only moves on the x-axis
  this.frame = 0;
  this.player= opts.player; }
 
+//This loads the bossalien
 BossAlien.prototype.draw = function(canvas) 
 { Sprites.draw(canvas, 'alien4', this.x, this.y, this.frame);}
 
 BossAlien.prototype.step = function(dt)
 { this.x += this.dx;
- this.frame = (this.frame+1) % 2; 
+ this.frame = (this.frame+1) % 2; // Amount of frames
  return true; } 
 
 BossAlien.prototype.die = function() {
-    GameAudio.play('bossfire');
-    this.board.remove(this);
+    GameAudio.play('bossfire');     // Plays audio 
+    this.board.remove(this);        // Removes sprite on death
     this.player.frame=1;
     this.board.player.badass = true;
-    score = score +20;
+    score = score +20;              // The score for hitting the boss alien
     document.getElementById('score').innerHTML="SCORE : " + score;
                         
     

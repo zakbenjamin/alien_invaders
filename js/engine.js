@@ -42,7 +42,7 @@ var Game = new function() {
   this.loop = function() { 
     Game.board.step(40/1000);              
       
-      // Indicates the overall speed of the game 
+      // Indicates the overall speed of the game. Made it 40 for more fluidity 
       
     Game.board.render(Game.canvas);
     setTimeout(Game.loop,30);
@@ -52,7 +52,7 @@ var Game = new function() {
 
 
     
-    // This initiates the sprites and its information 
+    // This initiates the spritesheet and its information 
 
 var Sprites = new function() {
   this.map = { };                                               
@@ -102,7 +102,7 @@ var GameScreen = function GameScreen(text,text2,callback) {
 };
 
 
-
+// This loads the gameboard for each level
 var GameBoard = function GameBoard(level_number) {
   this.removed_objs = [];
   this.missiles = 0;

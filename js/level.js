@@ -1,4 +1,4 @@
-// This is an array. 1 & 2 & 3 represents Alien 1 & 2 & 3 respectively, whilst 0 represents no alien. Depending on each level, you can change from bottom top what type, how many and what direction the alines come from.
+// This is an array and effects the sprite positions. 1 & 2 & 3 represents Alien 1 & 2 & 3 respectively, whilst 0 represents no alien. Depending on each level, you can change from bottom top what type, how many and what direction the alines come from.
 
 
 var levelData = { 
@@ -63,11 +63,11 @@ var levelData = {
     Game.loadBoard(screen);
     Game.loop();
     GameAudio.play('start'); 
-      lives = 0;
+      lives = 0;        
   }
 
   function endGame() {
-    var screen = new GameScreen(" GAME OVER","PRESS SPACE TO RESTART",                             // This represents what is shown when do you get hit by an alien missile 
+    var screen = new GameScreen(" GAME OVER","PRESS SPACE TO RESTART",                             // This represents what is shown when do you die and have to restart the game 
                                 
                                 
                                 
@@ -78,7 +78,7 @@ var levelData = {
                                      lives = 1; 
                                      
 document.getElementById('lives').innerHTML="LIVES : " + lives;                                     
-                                       score = 0;
+                                       score = 0;       // Resets score
                                      document.getElementById('score').innerHTML="SCORE : " + score;
                                  });
     Game.loadBoard(screen);
@@ -90,14 +90,16 @@ document.getElementById('lives').innerHTML="LIVES : " + lives;
                                 
                                  function() {
                                      Game.loadBoard(new GameBoard(1));
-                                     score = 0;
+                                     score = 0; // Resets score
                                      document.getElementById('score').innerHTML="SCORE : " + score;
                                  });
     Game.loadBoard(screen);
   }
 
+
+// These are the sound files which are loaded & enabled which accompany each assigned main action 
   $(function() {
-    GameAudio.load({ 'fire' : 'media/waka.ogg', 'die' : 'media/laserdeath.ogg', 'start' : 'media/startsound.ogg', 'bossfire' : 'media/laser.ogg'}, // These are the sound files which are enabled and accompany each assigned action 
+    GameAudio.load({ 'fire' : 'media/waka.ogg', 'die' : 'media/laserdeath.ogg', 'start' : 'media/startsound.ogg', 'bossfire' : 'media/laser.ogg'},  
                    
                    function() { 
                        Game.initialize("#gameboard", levelData, spriteData,
