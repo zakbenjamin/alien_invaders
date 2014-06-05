@@ -55,7 +55,8 @@ var levelData = {
   
 
   function startGame() {
-    var screen = new GameScreen("PACMAN INADERS","PRESS SPACE TO SPART",                           // This represents what is shown in the start screen
+    var screen = new GameScreen("PACMAN INADERS","PRESS SPACE TO SPART",                     
+                                // This represents what is shown in the start screen
                                 
                                  function() {
                                      Game.loadBoard(new GameBoard(1));
